@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Форма обратной связи</title>
+</head>
+
+<body>
+    <h2>Отправьте данные через GET</h2>
+    <form action="get_handler.php" method="GET">
+        <input type="text" name="username" placeholder="Ваше имя">
+        <input type="number" name="age" placeholder="Ваш возраст">
+        <button type="submit">Отправить GET</button>
+    </form>
+
+    <h2>Отправьте данные через POST</h2>
+    <form action="post_handler.php" method="POST">
+        <input type="text" name="username" placeholder="Ваше имя">
+        <input type="password" name="secret" placeholder="Секретное слово">
+        <button type="submit">Отправить POST</button>
+    </form>
+</body>
+
+</html>

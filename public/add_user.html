@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление пользователя</title>
+</head>
+
+<body>
+    <h1>Добавить нового пользователя</h1>
+    <form action="add_user.php" method="POST">
+        <p>
+            <label>Имя:</label><br>
+            <input type="text" name="name" required>
+        </p>
+        <p>
+            <label>Email:</label><br>
+            <input type="email" name="email" required>
+        </p>
+        <p>
+            <label>Возраст:</label><br>
+            <input type="number" name="age">
+        </p>
+        <button type="submit">Добавить</button>
+    </form>
+    <p><a href="db_test.php">Посмотреть всех пользователей</a></p>
+</body>
+
+</html>
