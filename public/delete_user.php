@@ -1,24 +1,29 @@
 <?php
-$host = 'MySQL-8.4';
-$user = 'root';
-$password = '';      // Для OpenServer
-$database = 'test_db';
+require_once 'config.php';
 
-$conn = new mysqli($host, $user, $password, $database);
+$conn = mysqli_connect($db_host, $db_user, $db_password, $db_name, $db_port);
 
-if ($conn->connect_error) {
-    die("Ошибка подключения: " . $conn->connect_error);
+if (!$conn) {
+    die("Ошибка подключения: " . mysqli_connect_error());
 }
 
-$id = $_GET['id'] ?? 0;
+// Валидация ID
+$id = filter_var($_GET['id'] ?? 0, FILTER_VALIDATE_INT);
 
-$sql = "DELETE FROM users WHERE id = $id";
+if (!$id) {
+    die("Неверный ID");
+}
 
-if ($conn->query($sql) === TRUE) {
+// Подготовленный запрос
+$stmt = mysqli_prepare($conn, "DELETE FROM users WHERE id=?");
+mysqli_stmt_bind_param($stmt, "i", $id);
+
+if (mysqli_stmt_execute($stmt)) {
     echo "<h2 style='color: green;'>✅ Пользователь удалён!</h2>";
-    echo "<a href='db_test.php'>Вернуться к списку</a>";
+    echo "<a href='db_test.php'>К списку</a>";
 } else {
-    echo "Ошибка: " . $conn->error;
+    echo "Ошибка: " . mysqli_stmt_error($stmt);
 }
 
-$conn->close();
+mysqli_stmt_close($stmt);
+mysqli_close($conn);

@@ -12,9 +12,10 @@ if (!$conn) {
 
 echo "<h2>Подключение успешно!</h2>";
 
-// Запрос к базе данных
-$sql = "SELECT id, name, email, age FROM users";
-$result = mysqli_query($conn, $sql);
+// Запрос без пользовательских данных (можно без prepare)
+$result = mysqli_query($conn, "SELECT id, name, email, age FROM users");
+
+echo "<h2>Список пользователей</h2>";
 
 if (mysqli_num_rows($result) > 0) {
     echo "<table border='1' cellpadding='10'>";
@@ -22,13 +23,13 @@ if (mysqli_num_rows($result) > 0) {
 
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td>" . $row['id'] . "</td>";
+        echo "<td>" . (int)$row['id'] . "</td>";
         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
         echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-        echo "<td>" . $row['age'] . "</td>";
+        echo "<td>" . (int)$row['age'] . "</td>";
         echo "<td>
-            <a href='/edit_user.php?id=" . $row['id'] . "'>✏️ Редактировать</a> |
-            <a href='delete_user.php?id=" . $row['id'] . "' onclick='return confirm(\"Удалить?\")'>🗑️ Удалить</a>
+            <a href='/edit_user.php?id=" . (int)$row['id'] . "'>✏️ Редактировать</a> |
+            <a href='delete_user.php?id=" . (int)$row['id'] . "' onclick='return confirm(\"Удалить?\")'>🗑️ Удалить</a>
         </td>";
         echo "</tr>";
     }
