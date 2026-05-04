@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        .error { color: red; }
+        .success { color: green; }
+        input { margin: 5px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Регистрация</h2>
+    <form action="register.php" method="POST">
+        <input type="text" name="username" placeholder="Логин" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <input type="password" name="confirm_password" placeholder="Повторите пароль" required>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    <p><a href="login.html">Уже есть аккаунт? Войти</a></p>
+</body>
+</html>

@@ -39,5 +39,8 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 echo "<p><a href='add_user.html'>➕ Добавить пользователя</a></p>";
+echo "<hr>";
+echo "<p><a href='dashboard.php'>← Назад в личный кабинет</a></p>";
+echo "<p><a href='logout.php'>🚪 Выйти</a></p>";
 
 mysqli_close($conn);
